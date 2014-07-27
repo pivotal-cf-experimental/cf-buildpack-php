@@ -31,7 +31,7 @@ excluded_files=(
   'cf.Gemfile.lock'
   'bin/package'
   'buildpack-packager/'
-  'bin/deploy'
+  'bin/deployAndTest'
   '.travis.yml'
 )
 

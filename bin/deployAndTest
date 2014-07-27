@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+ls -la /usr/bin/tar
+ls -la /usr/bin/gzip
 git submodule update --init
 bin/package offline
 mv ./*.zip php-buildpack-offline.zip

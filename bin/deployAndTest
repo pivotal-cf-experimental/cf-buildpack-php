@@ -1,15 +1,15 @@
-git submodule update --init
-bin/package offline
+#!/usr/bin/env bash
 mv ./*.zip php-buildpack-offline.zip
 BPDIR=$(cd $(dirname $0); cd ..; pwd)
 TMPDIR=$BPDIR/tmp
 TARGET=$BPDIR/target
-mkdir /app
 mkdir $BPDIR/tmp
 mkdir $TARGET
 cd $TARGET
-touch composer.json
+echo "{\"repositories\":[{\"packagist\":false}]}" > composer.json
 touch index.php
 $BPDIR/bin/detect
 $BPDIR/bin/compile . $TMPDIR
 $BPDIR/bin/release .
+rm -Rf $TARGET
+rm -Rf $TMPDIR

@@ -144,8 +144,7 @@ fi
 status "Setting up runtime environment..."
 
 # we need to run things in here, set it up!
-ln -s $BUILD_DIR/.heroku /app/.heroku
-export PATH=/app/.heroku/php/bin:$PATH
+export PATH=$BUILD_DIR/.heroku/php/bin:$PATH
 
 if [[ "${PHP_VERSION:-}" || ! "${HHVM_VERSION:-}" ]]; then
     PHP_VERSION=${PHP_VERSION:-${PHP_VERSIONS_ARR[0]}}
@@ -168,9 +167,9 @@ if [[ "${HHVM_VERSION:-}" ]]; then
     curl --silent --location "$HHVM_DIST_URL" | tar xz -C $BUILD_DIR/.heroku/php
     echo $HHVM_VERSION > $CACHE_DIR/hhvm_version
     # make HHVM accessible
-    export PATH=$PATH:/app/.heroku/php/usr/bin
+    export PATH=$PATH:$BUILD_DIR/.heroku/php/usr/bin
     # so it'll start. remember to use the full path to the binary, or we'll get an infinite loop
-    hhvm() { LD_LIBRARY_PATH=/app/.heroku/php/usr/lib/hhvm:/app/.heroku/php/usr/lib `which hhvm` "$@"; }
+    hhvm() { LD_LIBRARY_PATH=$BUILD_DIR/.heroku/php/usr/lib/hhvm:$BUILD_DIR/.heroku/php/usr/lib `which hhvm` "$@"; }
     export -f hhvm
 fi
 

@@ -1,3 +1,0 @@
-git submodule update --init
-bin/package offline
-mv ./*.zip php-buildpack-offline.zip

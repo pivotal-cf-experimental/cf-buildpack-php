@@ -1,6 +1,6 @@
 language: bash
 before_script:
-  - echo $PATH
+  - ls -la /bin
   - sudo mkdir /app
   - sudo chmod 777 /app
   - sudo chown travis:travis /app

@@ -3,7 +3,8 @@ bin/package offline
 mv ./*.zip php-buildpack-offline.zip
 BPDIR=$(cd $(dirname $0); cd ..; pwd)
 TMPDIR=$BPDIR/tmp
-TARGER=$BPDIR/target
+TARGET=$BPDIR/target
+mkdir /app
 mkdir $BPDIR/tmp
 mkdir $TARGET
 cd $TARGET

@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
+git submodule update --init
+bin/package offline
 mv ./*.zip php-buildpack-offline.zip
 BPDIR=$(cd $(dirname $0); cd ..; pwd)
 TMPDIR=$BPDIR/tmp
 TARGET=$BPDIR/target
 mkdir $BPDIR/tmp
 mkdir $TARGET
+mkdir $TARGET/.heroku
 cd $TARGET
 echo "{\"repositories\":[{\"packagist\":false}]}" > composer.json
 touch index.php

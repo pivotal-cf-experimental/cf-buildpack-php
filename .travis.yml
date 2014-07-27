@@ -7,4 +7,4 @@ deploy:
   file: "*.zip"
   on:
     tags: true
-    repo: Orange-OpenSource/php-buildpack
+    all_branches: true

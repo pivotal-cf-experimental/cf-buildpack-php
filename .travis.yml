@@ -1,4 +1,7 @@
 language: bash
+before_script:
+  - sudo mkdir /app
+  - sudo chmod 766 -R /app
 script: "./bin/deployAndTest"
 deploy:
   provider: releases

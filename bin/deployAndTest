@@ -12,7 +12,7 @@ cd $TARGET
 echo "{\"repositories\":[{\"packagist\":false}]}" > composer.json
 touch index.php
 $BPDIR/bin/detect
-sudo $BPDIR/bin/compile . $TMPDIR
+$BPDIR/bin/compile . $TMPDIR
 $BPDIR/bin/release .
 rm -Rf $TARGET
 rm -Rf $TMPDIR

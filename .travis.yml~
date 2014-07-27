@@ -1,0 +1,9 @@
+language: bash
+script: "./bin/deploy"
+deploy:
+  provider: releases
+  api_key:
+    secure: ZXbVnjySb7Dt0DH0CbP08n2gy3YPXtz13LI+HQYupUl70zVIBmRKdnBvxnwbyF9yUCgVkoSaCoQl3r7nvH2MZEmrupqYSXO7krkCC9yk2al1ILtr5bOkgMszkxspiI+7dNbBkgfwnfsKLQAzHU7FQEsfef0YQDsStiTacRhroYQ=
+  file: "*.zip"
+  on:
+    repo: Orange-OpenSource/php-buildpack

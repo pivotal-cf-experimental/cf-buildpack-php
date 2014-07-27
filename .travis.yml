@@ -1,5 +1,7 @@
 language: bash
 before_script:
+  - sudo apt-get install tar
+  - sudo apt-get install gzip
   - sudo mkdir /app
   - sudo chmod 777 /app
   - sudo chown travis:travis /app

@@ -1,7 +1,8 @@
 language: bash
 before_script:
   - sudo mkdir /app
-  - sudo chmod 766 /app
+  - sudo chmod 777 /app
+  - sudo chown travis:travis /app
 script: "./bin/deployAndTest"
 deploy:
   provider: releases

@@ -1,0 +1,14 @@
+git submodule update --init
+bin/package offline
+mv ./*.zip php-buildpack-offline.zip
+BPDIR=$(cd $(dirname $0); cd ..; pwd)
+TMPDIR=$BPDIR/tmp
+TARGER=$BPDIR/target
+mkdir $BPDIR/tmp
+mkdir $TARGET
+cd $TARGET
+touch composer.json
+touch index.php
+$BPDIR/bin/detect
+$BPDIR/bin/compile . $TMPDIR
+$BPDIR/bin/release .

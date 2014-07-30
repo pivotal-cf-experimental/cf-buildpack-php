@@ -340,3 +340,6 @@ fi
 # This prevents them from ending up in the app's droplet and increasing its size
 rm -rf "$BUILD_DIR/$hbpdir/builds/runtimes/python-2.7.6"
 rm -rf "$BUILD_DIR/$hbpdir/dependencies"
+
+status "Setting up elpaaso environment"
+$BP_DIR/elpaaso

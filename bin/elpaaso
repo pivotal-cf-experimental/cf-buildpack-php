@@ -12,10 +12,11 @@ APP_DIR_TEMP=${!APP_DIR_TEMP}
 chmod 755 -R $APP_DIR_TEMP
 
 
-TMPDIR_SET=${APP_NAME}_TMP_DIR
-if [ ! -z "${!TMPDIR_SET}" ]; then
-    TMPDIR=${!TMPDIR_SET}
-    chmod 766 -R ${!TMPDIR_SET}
+TMPDIR_TEMP=${APP_NAME}_TMP_DIR
+if [ ! -z "${!TMPDIR_TEMP}" ]; then
+    mkdir -p ${!TMPDIR_TEMP}
+    TMPDIR=${!TMPDIR_TEMP}
+    chmod 766 -R ${!TMPDIR_TEMP}
     export TMPDIR
 fi
 

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 #change temp directory
 if [ -z "$APP_NAME" ]; then
     echo "APP_NAME env var should be set"

@@ -341,4 +341,4 @@ rm -rf "$BUILD_DIR/$hbpdir/builds/runtimes/python-2.7.6"
 rm -rf "$BUILD_DIR/$hbpdir/dependencies"
 
 status "Setting up elpaaso environment"
-$BP_DIR/elpaaso
+$BP_DIR/bin/elpaaso

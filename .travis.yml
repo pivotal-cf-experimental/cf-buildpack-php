@@ -1,0 +1,15 @@
+language: bash
+#before_script:
+#  - ls -la /bin
+#  - sudo mkdir /app
+#  - sudo chmod 777 /app
+#  - sudo chown travis:travis /app
+script: "./bin/deployAndTest"
+deploy:
+  provider: releases
+  api_key:
+    secure: ZXbVnjySb7Dt0DH0CbP08n2gy3YPXtz13LI+HQYupUl70zVIBmRKdnBvxnwbyF9yUCgVkoSaCoQl3r7nvH2MZEmrupqYSXO7krkCC9yk2al1ILtr5bOkgMszkxspiI+7dNbBkgfwnfsKLQAzHU7FQEsfef0YQDsStiTacRhroYQ=
+  file: "php-buildpack-offline.zip"
+  on:
+    tags: true
+    all_branches: true

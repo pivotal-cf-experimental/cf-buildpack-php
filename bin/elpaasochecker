@@ -9,7 +9,7 @@ error() {
 notice_inline() {
   echo "NOTICE: $*" | indent
 }
-echo notice_inline "Check __APP_NAME__ env var is set"
+notice_inline "Check __APP_NAME__ env var is set"
 
 if [ -z "$__APP_NAME__" ]; then
     error "__APP_NAME__ env var should be set"

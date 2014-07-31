@@ -19,6 +19,7 @@ if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     chmod 766 -R $LOGS_DIR_TEMP
     echo "$LOGS_DIR_TEMP" >&2
     echo "Starting logs user redirection..." >&2
+    echo "" > $LOGS_DIR_TEMP/current.log
     wait_pipe_logs=$(mktemp -t "logs.app.XXXXXX" -u)
     rm -rf $wait_pipe_logs
     mkfifo $wait_pipe_logs

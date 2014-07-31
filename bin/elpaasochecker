@@ -1,9 +1,9 @@
 
-if [ -z "$APP_NAME" ]; then
-    error "APP_NAME env var should be set"
+if [ -z "$__APP_NAME__" ]; then
+    error "__APP_NAME__ env var should be set"
     exit 1
 fi
-APP_DIR_TEMP=${APP_NAME}_APP_DIR
+APP_DIR_TEMP=${__APP_NAME__}_APP_DIR
 if [[ -z "${!APP_DIR_TEMP+x}" ]]; then
     error "${APP_DIR_TEMP} env var should be set"
     exit 1

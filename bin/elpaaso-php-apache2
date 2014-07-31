@@ -35,7 +35,7 @@ echo "\
 Boots PHP-FPM together with Apache2 on Heroku and for local development.
 
 Usage:
-  heroku-php-apache2 [options] [<DOCUMENT_ROOT>]
+  elpaaso-php-apache2 [options] [<DOCUMENT_ROOT>]
 
 Options:
   -C <httpd.inc.conf>     The path to the configuration file to include inside
@@ -74,8 +74,16 @@ you retain the appropriate include mechanisms (see default configs for details).
 " >&2
 }
 
+-#########ElPaaso extend heroku script#########
+VENDOR_BIN_DIR=$(cd $(dirname $0); cd ..; pwd)
+source VENDOR_BIN_DIR/elpaaso
+APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR
+APP_DIR_ELPAASO=${!APP_DIR_ELPAASO}
+
 # we need this in configs
-export HEROKU_APP_DIR=$(pwd)
+export HEROKU_APP_DIR="$APP_DIR_ELPAASO"
+
+##############################################
 export DOCUMENT_ROOT="$HEROKU_APP_DIR"
 # set a default port if none is given
 export PORT=${PORT:-$(( $RANDOM+1024 ))}

@@ -340,6 +340,7 @@ fi
 rm -rf "$BUILD_DIR/$hbpdir/builds/runtimes/python-2.7.6"
 rm -rf "$BUILD_DIR/$hbpdir/dependencies"
 
+env
 status "Check elpaaso environment"
 source $BP_DIR/bin/elpaasochecker
 Status "Elpaaso script copying"

@@ -15,8 +15,9 @@ LOGS_DIR_TEMP=${__APP_NAME__}_LOGS_DIR
 if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     echo "Create logs user folder..." >&2
     LOGS_DIR_TEMP=${!LOGS_DIR_TEMP}
-    mkdir -p $LOGS_DIR_TEMP
-    chmod 766 -R $LOGS_DIR_TEMP
+    mkdir -p $LOGS_DIR_TEMP >&2
+    chmod 766 -R $LOGS_DIR_TEMP >&2
+    echo "$LOGS_DIR_TEMP" >&2
     echo "Starting logs user redirection..." >&2
     wait_pipe_logs=$(mktemp -t "logs.app.XXXXXX" -u)
     rm -rf $wait_pipe_logs

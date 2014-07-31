@@ -1,9 +1,11 @@
+notice "Check __APP_NAME__ env var is set"
 
 if [ -z "$__APP_NAME__" ]; then
     error "__APP_NAME__ env var should be set"
     exit 1
 fi
 APP_DIR_TEMP=${__APP_NAME__}_APP_DIR
+notice "Check ${APP_DIR_TEMP} env var is set"
 if [[ -z "${!APP_DIR_TEMP+x}" ]]; then
     error "${APP_DIR_TEMP} env var should be set"
     exit 1

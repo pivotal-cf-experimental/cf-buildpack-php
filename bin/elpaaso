@@ -1,6 +1,6 @@
 APP_DIR_TEMP=${__APP_NAME__}_APP_DIR
 APP_DIR_TEMP=${!APP_DIR_TEMP}
-chmod 755 -R $APP_DIR_TEMP
+
 
 #change temp directory
 TMPDIR_TEMP=${__APP_NAME__}_TMP_DIR
@@ -15,8 +15,8 @@ LOGS_DIR_TEMP=${__APP_NAME__}_LOGS_DIR
 if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     echo "Create logs user folder..." >&2
     LOGS_DIR_TEMP=${!LOGS_DIR_TEMP}
-    mkdir -p $LOGS_DIR_TEMP >&2
-    chmod 766 -R $LOGS_DIR_TEMP >&2
+    mkdir -p $LOGS_DIR_TEMP
+    chmod 766 -R $LOGS_DIR_TEMP
     echo "$LOGS_DIR_TEMP" >&2
     echo "Starting logs user redirection..." >&2
     wait_pipe_logs=$(mktemp -t "logs.app.XXXXXX" -u)
@@ -24,9 +24,9 @@ if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     mkfifo $wait_pipe_logs
     (touch "$LOGS_DIR_TEMP/current.log"; tail -qF -n 0 "$LOGS_DIR_TEMP/*.log" 1>&2; echo "tail ./*.log"; ) > $wait_pipe_logs &
 fi
+
+#chmod 755 -R $APP_DIR_TEMP
 unset VCAP_APPLICATION 2>/dev/null
 unset VCAP_SERVICES 2>/dev/null
 unset VCAP_APP_PORT 2>/dev/null
 unset VCAP_APP_HOST 2>/dev/null
-
-

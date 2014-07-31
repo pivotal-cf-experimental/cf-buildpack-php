@@ -344,8 +344,8 @@ rm -rf "$BUILD_DIR/$hbpdir/dependencies"
 status "Check elpaaso environment..."
 source $BP_DIR/bin/elpaasochecker
 
-status "Force to elpaaso environment..."
-echo "web: $bindir/elpaaso-php-apache2" > Procfile
-notice_inline "Force to 'web: $bindir/elpaaso-php-apache2', no choice on elpaaso"
+#status "Force to elpaaso environment..."
+#echo "web: $bindir/elpaaso-php-apache2" > Procfile
+#notice_inline "Force to 'web: $bindir/elpaaso-php-apache2', no choice on elpaaso"
 
 ######################

@@ -1,11 +1,11 @@
 
 APP_NAME="MYAPP"
 if [ -z "$APP_NAME" ]; then
-    echo "APP_NAME env var should be set"
+    error "APP_NAME env var should be set"
     exit 1
 fi
 APP_DIR_TEMP=${APP_NAME}_APP_DIR
 if [[ ${!APP_DIR_TEMP+x} || -z "${!APP_DIR_TEMP}" ]]; then
-    echo "${APP_DIR_TEMP} env var should be set"
+    error "${APP_DIR_TEMP} env var should be set"
     exit 1
 fi

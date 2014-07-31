@@ -24,10 +24,7 @@ if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     mkdir -p ${!LOGS_DIR_TEMP}
     chmod 766 -R ${!LOGS_DIR_TEMP}
 fi
-unset VCAP_APPLICATION 2>/dev/null
-unset VCAP_SERVICES 2>/dev/null
-unset VCAP_APP_PORT 2>/dev/null
-unset VCAP_APP_HOST 2>/dev/null
+
 
 
 APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR

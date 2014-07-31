@@ -74,9 +74,9 @@ you retain the appropriate include mechanisms (see default configs for details).
 " >&2
 }
 
--#########ElPaaso extend heroku script#########
-VENDOR_BIN_DIR=$(cd $(dirname $0); cd ..; pwd)
-source VENDOR_BIN_DIR/elpaaso
+#########ElPaaso extend heroku script#########
+VENDOR_BIN_DIR=$(cd $(dirname $0); pwd)
+source $VENDOR_BIN_DIR/elpaaso
 APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR
 APP_DIR_ELPAASO=${!APP_DIR_ELPAASO}
 

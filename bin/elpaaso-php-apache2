@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # fail hard
 set -o pipefail
 # fail harder
@@ -31,10 +32,10 @@ check_exists() {
 
 print_help() {
 echo "\
-Boots PHP-FPM together with Apache2 on Elpaaso and for local development.
+Boots PHP-FPM together with Apache2 on Heroku and for local development.
 
 Usage:
-  elpaaso-php-apache2 [options] [<DOCUMENT_ROOT>]
+  heroku-php-apache2 [options] [<DOCUMENT_ROOT>]
 
 Options:
   -C <httpd.inc.conf>     The path to the configuration file to include inside
@@ -66,25 +67,15 @@ Any file name that ends in '.php' will be run through the PHP interpreter first.
 You may use this for templating although this is less useful than e.g. for Nginx
 where unlike in Apache2, you cannot reference environment variables in config
 files using a '\${VARNAME}' syntax.
-All file paths must be relative to '$APP_DIR_ELPAASO'.
+All file paths must be relative to '$HEROKU_APP_DIR'.
 
 If you would like to use the -C and -c or -F and -f options together, make sure
 you retain the appropriate include mechanisms (see default configs for details).
 " >&2
 }
 
-#########ElPaaso extend heroku script#########
-VENDOR_BIN_DIR=$(cd $(dirname $0); cd ..; pwd)
-#source VENDOR_BIN_DIR/elpaaso
-APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR
-APP_DIR_ELPAASO=${!APP_DIR_ELPAASO}
-
 # we need this in configs
-export HEROKU_APP_DIR="$(pwd)"
-
-##############################################
-
-# we need this in configs
+export HEROKU_APP_DIR=$(pwd)
 export DOCUMENT_ROOT="$HEROKU_APP_DIR"
 # set a default port if none is given
 export PORT=${PORT:-$(( $RANDOM+1024 ))}

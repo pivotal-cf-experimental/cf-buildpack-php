@@ -3,6 +3,20 @@ APP_DIR_TEMP=${!APP_DIR_TEMP}
  echo "App dir become unwritable..." >&2
 chmod 755 -R $APP_DIR_TEMP
 
+taillogs() {
+    # When this exits, exit all back ground process also.
+    trap 'kill $(jobs -p)' EXIT
+
+    # iterate through the each given file names,
+    for file in "$@"
+    do
+        # show tails of each in background.
+        tail -qF -n 0 $file 1>&2 &
+    done
+
+    # wait .. until CTRL+C
+    wait
+}
 #change temp directory
 TMPDIR_TEMP=${__APP_NAME__}_TMP_DIR
 if [[ ! -z "${!TMPDIR_TEMP+x}" ]]; then
@@ -23,7 +37,7 @@ if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     echo "$LOGS_DIR_TEMP" >&2
     echo "Starting logs user redirection..." >&2
     echo "" > $LOGS_DIR_TEMP/current.log
-    tail -qF -n 0 "$LOGS_DIR_TEMP/*.log" 1>&2 &
+    taillogs "$LOGS_DIR_TEMP/*.log" &
 fi
 
 unset VCAP_APPLICATION 2>/dev/null

@@ -16,7 +16,6 @@
         "bin/heroku-hhvm-nginx",
         "bin/heroku-php-apache2",
         "bin/heroku-php-nginx",
-        "bin/elpaaso-php-apache2",
         "bin/elpaaso"
     ]
 }

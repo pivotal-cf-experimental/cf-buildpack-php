@@ -5,37 +5,6 @@ set -o pipefail
 set -eu
 # for patterns further down
 shopt -s extglob
-#########ElPaaso extend heroku script#########
-APP_DIR_TEMP=${__APP_NAME__}_APP_DIR
-APP_DIR_TEMP=${!APP_DIR_TEMP}
-chmod 755 -R $APP_DIR_TEMP
-
-#change temp directory
-TMPDIR_TEMP=${__APP_NAME__}_TMP_DIR
-if [[ ! -z "${!TMPDIR_TEMP+x}" ]]; then
-    mkdir -p ${!TMPDIR_TEMP}
-    TMPDIR=${!TMPDIR_TEMP}
-    chmod 766 -R ${!TMPDIR_TEMP}
-    export TMPDIR
-fi
-
-LOGS_DIR_TEMP=${__APP_NAME__}_LOGS_DIR
-if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
-    mkdir -p ${!LOGS_DIR_TEMP}
-    chmod 766 -R ${!LOGS_DIR_TEMP}
-fi
-
-
-
-APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR
-APP_DIR_ELPAASO=${!APP_DIR_ELPAASO}
-
-# we need this in configs
-export HEROKU_APP_DIR="$APP_DIR_ELPAASO"
-
-##############################################
-
-
 
 php_passthrough() {
     local dir=$(dirname $1)
@@ -103,6 +72,35 @@ If you would like to use the -C and -c or -F and -f options together, make sure
 you retain the appropriate include mechanisms (see default configs for details).
 " >&2
 }
+
+#########ElPaaso extend heroku script#########
+APP_DIR_TEMP=${__APP_NAME__}_APP_DIR
+APP_DIR_TEMP=${!APP_DIR_TEMP}
+chmod 755 -R $APP_DIR_TEMP
+
+#change temp directory
+TMPDIR_TEMP=${__APP_NAME__}_TMP_DIR
+if [[ ! -z "${!TMPDIR_TEMP+x}" ]]; then
+    mkdir -p ${!TMPDIR_TEMP}
+    TMPDIR=${!TMPDIR_TEMP}
+    chmod 766 -R ${!TMPDIR_TEMP}
+fi
+
+LOGS_DIR_TEMP=${__APP_NAME__}_LOGS_DIR
+if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
+    mkdir -p ${!LOGS_DIR_TEMP}
+    chmod 766 -R ${!LOGS_DIR_TEMP}
+fi
+
+
+
+APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR
+APP_DIR_ELPAASO=${!APP_DIR_ELPAASO}
+
+# we need this in configs
+export HEROKU_APP_DIR="$APP_DIR_ELPAASO"
+
+##############################################
 
 # we need this in configs
 export DOCUMENT_ROOT="$HEROKU_APP_DIR"

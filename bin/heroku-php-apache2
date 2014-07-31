@@ -76,6 +76,18 @@ you retain the appropriate include mechanisms (see default configs for details).
 
 # we need this in configs
 export HEROKU_APP_DIR=$(pwd)
+
+#########ElPaaso extend heroku script#########
+VENDOR_BIN_DIR=$(cd $(dirname $0); pwd)
+source $VENDOR_BIN_DIR/elpaaso
+APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR
+APP_DIR_ELPAASO=${!APP_DIR_ELPAASO}
+
+# we need this in configs
+HEROKU_APP_DIR="$APP_DIR_ELPAASO"
+
+##############################################
+
 export DOCUMENT_ROOT="$HEROKU_APP_DIR"
 # set a default port if none is given
 export PORT=${PORT:-$(( $RANDOM+1024 ))}
@@ -196,3 +208,9 @@ echo "Process exited unexpectedly: $exitproc"
 
 # this will trigger the trap and kill all remaining children
 exit 1
+
+####ElPaaso cleaning####
+unset HEROKU_APP_DIR 2>/dev/null
+unset PORT 2>/dev/null
+unset HEROKU_PHP_HTTPD_CONFIG_INCLUDE 2>/dev/null
+########################

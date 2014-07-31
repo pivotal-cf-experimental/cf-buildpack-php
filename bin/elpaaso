@@ -1,19 +1,12 @@
-#change temp directory
-if [ -z "$APP_NAME" ]; then
-    echo "APP_NAME env var should be set"
-    exit 1
-fi
+#!/bin/sh
+
 APP_DIR_TEMP=${APP_NAME}_APP_DIR
-if [ -z "${!APP_DIR_TEMP}" ]; then
-    echo "${!APP_DIR_TEMP} env var should be set"
-    exit 1
-fi
 APP_DIR_TEMP=${!APP_DIR_TEMP}
 chmod 755 -R $APP_DIR_TEMP
 
-
+#change temp directory
 TMPDIR_TEMP=${APP_NAME}_TMP_DIR
-if [ ! -z "${!TMPDIR_TEMP}" ]; then
+if [[ ${!TMPDIR_TEMP+x} && ! -z "${!TMPDIR_TEMP}" ]]; then
     mkdir -p ${!TMPDIR_TEMP}
     TMPDIR=${!TMPDIR_TEMP}
     chmod 766 -R ${!TMPDIR_TEMP}
@@ -21,7 +14,7 @@ if [ ! -z "${!TMPDIR_TEMP}" ]; then
 fi
 
 LOGS_DIR_TEMP=${APP_NAME}_LOGS_DIR
-if [ ! -z "${!LOGS_DIR_TEMP}" ]; then
+if [[ ${!LOGS_DIR_TEMP+x} && ! -z "${!LOGS_DIR_TEMP}" ]]; then
     mkdir -p ${!LOGS_DIR_TEMP}
     chmod 766 -R ${!LOGS_DIR_TEMP}
 fi

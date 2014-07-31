@@ -340,5 +340,8 @@ fi
 rm -rf "$BUILD_DIR/$hbpdir/builds/runtimes/python-2.7.6"
 rm -rf "$BUILD_DIR/$hbpdir/dependencies"
 
-status "Setting up elpaaso environment"
-source $BP_DIR/bin/elpaaso
+status "Check elpaaso environment"
+source $BP_DIR/bin/elpaasochecker
+Status "Elpaaso script copying"
+cp $BP_DIR/bin/elpaaso $BUILD_DIR/.heroku/php/bin
+chmod +x $BUILD_DIR/.heroku/php/bin/elpaaso

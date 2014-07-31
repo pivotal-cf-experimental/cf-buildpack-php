@@ -80,7 +80,7 @@ APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR
 APP_DIR_ELPAASO=${!APP_DIR_ELPAASO}
 
 # we need this in configs
-export HEROKU_APP_DIR="$APP_DIR_ELPAASO"
+export HEROKU_APP_DIR="$(pwd)"
 
 ##############################################
 

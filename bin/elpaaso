@@ -21,7 +21,7 @@ if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     wait_pipe_logs=$(mktemp -t "logs.app.XXXXXX" -u)
     rm -rf $wait_pipe_logs
     mkfifo $wait_pipe_logs
-    (touch "$LOGS_DIR_TEMP/.hidden.log"; tail -qF -n 0 "$LOGS_DIR_TEMP/*.log" 1>&2; echo "tail ./*.log"; ) > $wait_pipe_logs &
+    (touch "$LOGS_DIR_TEMP/current.log"; tail -qF -n 0 "$LOGS_DIR_TEMP/*.log" 1>&2; echo "tail ./*.log"; ) > $wait_pipe_logs &
 fi
 unset VCAP_APPLICATION 2>/dev/null
 unset VCAP_SERVICES 2>/dev/null

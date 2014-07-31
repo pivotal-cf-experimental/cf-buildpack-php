@@ -6,7 +6,7 @@ chmod 755 -R $APP_DIR_TEMP
 
 #change temp directory
 TMPDIR_TEMP=${APP_NAME}_TMP_DIR
-if [[ ${!TMPDIR_TEMP+x} && ! -z "${!TMPDIR_TEMP}" ]]; then
+if [[ ! -z "${!TMPDIR_TEMP+x}" ]]; then
     mkdir -p ${!TMPDIR_TEMP}
     TMPDIR=${!TMPDIR_TEMP}
     chmod 766 -R ${!TMPDIR_TEMP}
@@ -14,7 +14,7 @@ if [[ ${!TMPDIR_TEMP+x} && ! -z "${!TMPDIR_TEMP}" ]]; then
 fi
 
 LOGS_DIR_TEMP=${APP_NAME}_LOGS_DIR
-if [[ ${!LOGS_DIR_TEMP+x} && ! -z "${!LOGS_DIR_TEMP}" ]]; then
+if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     mkdir -p ${!LOGS_DIR_TEMP}
     chmod 766 -R ${!LOGS_DIR_TEMP}
 fi

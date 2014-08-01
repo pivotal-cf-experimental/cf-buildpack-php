@@ -21,15 +21,16 @@ taillogs() {
 TMPDIR_TEMP=${__APP_NAME__}_TMP_DIR
 if [[ ! -z "${!TMPDIR_TEMP+x}" ]]; then
     echo "Create tmp user folder..." >&2
-    mkdir -p ${!TMPDIR_TEMP}
-    TMPDIR=${!TMPDIR_TEMP}
+    TMPDIR=$APP_DIR_TEMP${!TMPDIR_TEMP}
+    mkdir -p $TMPDIR
     echo "Tmp user folder become writable and readable..." >&2
-    chmod 766 -R ${!TMPDIR_TEMP}
+    chmod 766 -R $TMPDIR
 fi
 
 LOGS_DIR_TEMP=${__APP_NAME__}_LOGS_DIR
 if [[ ! -z "${!LOGS_DIR_TEMP+x}" ]]; then
     echo "Create logs user folder..." >&2
+    export $LOGS_DIR_TEMP=$APP_DIR_TEMP${!LOGS_DIR_TEMP}
     LOGS_DIR_TEMP=${!LOGS_DIR_TEMP}
     mkdir -p $LOGS_DIR_TEMP
     echo "Logs user folder become writable and readable..." >&2

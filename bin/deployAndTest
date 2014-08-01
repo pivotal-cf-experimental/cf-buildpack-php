@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
+#For deployment on release
 git submodule update --init
 bin/package offline
 mv ./*.zip php-buildpack-offline.zip
+
+
+#FIX ME finish test
 BPDIR=$(cd $(dirname $0); cd ..; pwd)
 TMPDIR=$BPDIR/tmp
 TARGET=$BPDIR/target

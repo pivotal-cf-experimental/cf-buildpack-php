@@ -4,7 +4,7 @@ language: bash
 #  - sudo mkdir /app
 #  - sudo chmod 777 /app
 #  - sudo chown travis:travis /app
-script: "./bin/deployAndTest"
+script: "./bin/deploy"
 deploy:
   provider: releases
   api_key:

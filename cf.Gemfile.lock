@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/cf-buildpacks/machete.git
+  remote: https://github.com/cf-buildpacks/machete.git
   revision: 6bd9bcd2edc98fd638fe8ea8473ac0cdd4b397db
   branch: master
   specs:

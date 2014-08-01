@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
 install_ext () {
@@ -340,3 +339,13 @@ fi
 # This prevents them from ending up in the app's droplet and increasing its size
 rm -rf "$BUILD_DIR/$hbpdir/builds/runtimes/python-2.7.6"
 rm -rf "$BUILD_DIR/$hbpdir/dependencies"
+
+####Elpaaso conf####
+status "Check elpaaso environment..."
+source $BP_DIR/bin/elpaasochecker
+
+status "Force to elpaaso environment..."
+echo "web: $bindir/heroku-php-apache2" > Procfile
+notice_inline "Force to 'web: $bindir/heroku-php-apache2', no choice on elpaaso"
+
+######################

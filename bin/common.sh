@@ -1,3 +1,4 @@
+
 error() {
   echo
   echo -n " !     ERROR: "

@@ -76,6 +76,18 @@ you retain the appropriate include mechanisms (see default configs for details).
 
 # we need this in configs
 export HEROKU_APP_DIR=$(pwd)
+
+#########ElPaaso extend heroku script#########
+VENDOR_BIN_DIR=$(cd $(dirname $0); pwd)
+source $VENDOR_BIN_DIR/elpaaso
+APP_DIR_ELPAASO=${__APP_NAME__}_APP_DIR
+APP_DIR_ELPAASO=${!APP_DIR_ELPAASO}
+
+# we need this in configs
+HEROKU_APP_DIR="$APP_DIR_ELPAASO"
+
+##############################################
+
 export DOCUMENT_ROOT="$HEROKU_APP_DIR"
 # set a default port if none is given
 export PORT=${PORT:-$(( $RANDOM+1024 ))}
@@ -180,7 +192,7 @@ trap 'trap - EXIT; echo "Going down, terminating child processes..." >&2; jobs -
 
 # redirect logs to STDERR; write "tail ..." to the shared pipe if it exits
 echo "Starting log redirection..." >&2
-( touch "/tmp/heroku.php-fpm.$PORT.log" "/tmp/heroku.apache2_error.$PORT.log" "/tmp/heroku.apache2_access.$PORT.log"; tail -qF -n 0 /tmp/heroku.*.$PORT.log 1>&2; echo "tail heroku.*.$PORT.log"; ) > $wait_pipe &
+( touch "/tmp/heroku.php-fpm.$PORT.log" "/tmp/heroku.apache2_error.$PORT.log" "/tmp/heroku.apache2_access.$PORT.log"; tail -qF -n 0 /tmp/heroku.*.$PORT.log | sed -u 's/WARNING: \[pool www\] child [0-9]* said into stdout: \"\(.*\)\"$/\1/' 1>&2; echo "tail heroku.*.$PORT.log"; ) > $wait_pipe &
 # start FPM; write "php-fpm" to the shared pipe if it exits
 echo "Starting php-fpm..." >&2
 ( php-fpm --nodaemonize -y "$fpm_config" -c "$php_config"; echo "php-fpm"; ) > $wait_pipe &
@@ -196,3 +208,9 @@ echo "Process exited unexpectedly: $exitproc"
 
 # this will trigger the trap and kill all remaining children
 exit 1
+
+####ElPaaso cleaning####
+unset HEROKU_APP_DIR 2>/dev/null
+unset PORT 2>/dev/null
+unset HEROKU_PHP_HTTPD_CONFIG_INCLUDE 2>/dev/null
+########################

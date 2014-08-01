@@ -4,3 +4,5 @@
 vendor
 /log/
 .idea
+*.iml
+*~

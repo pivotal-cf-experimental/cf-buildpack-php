@@ -1,3 +1,9 @@
+# Deprecation Notice
+
+This repo is no longer maintained and supported as the official PHP buildpack for Cloud Foundry.
+
+The official one can be found [here](https://github.com/cloudfoundry/php-buildpack).
+
 # Cloud Foundry buildpack: PHP
 
 A Cloud Foundry [buildpack](http://docs.cloudfoundry.org/buildpacks/) for PHP based apps.
@@ -10,7 +16,7 @@ Additional documentation can be found at [CloudFoundry.org](http://docs.cloudfou
 This buildpack will be used if there is a `composer.json` or `index.php` file in the root directory of your project.
 
 ```bash
-cf push my_app -b https://github.com/cloudfoundry/cf-buildpack-php.git
+cf push my_app -b https://github.com/cloudfoundry/php-buildpack-legacy.git
 ```
 
 ## Cloud Foundry Extensions - Offline Mode
